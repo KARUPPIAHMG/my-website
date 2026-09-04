@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Karuppiah Mohan | Resource Management Specialist</title>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* CSS VARIABLES FOR THEMING */
+    :root {
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --accent: #e63946;
+      --accent-gradient: linear-gradient(135deg, #e63946 0%, #ff6b6b 100%);
+      --text-white: #0f172a;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --hero-bg: #f1f5f9;
+      --card-inner-bg: #ffffff;
+      --shadow-color: rgba(15, 23, 42, 0.08);
+      --glass-border: rgba(230, 57, 70, 0.15);
+      --nav-bg: rgba(248, 250, 252, 0.85);
+    }
+
+    /* PITCH BLACK DARK THEME */
+    [data-theme="dark"] {
+      --bg-main: #000000;
+      --bg-card: #080808;
+      --bg-card-hover: #121212;
+      --accent: #ff3b4a;
+      --accent-gradient: linear-gradient(135deg, #ff3b4a 0%, #ff6b6b 100%);
+      --text-white: #ffffff;
+      --text-muted: #a1a1aa;
+      --border-color: #18181b;
+      --hero-bg: #000000;
+      --card-inner-bg: #080808;
+      --shadow-color: rgba(0, 0, 0, 0.9);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --nav-bg: rgba(0, 0, 0, 0.85);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color 0.4s ease, color 0.4s ease;
+      width: 100%;
+    }
+
+    /* SCROLL PROGRESS INDICATOR */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: var(--accent-gradient);
+      z-index: 2000;
+      width: 0%;
+      transition: width 0.1s ease-out;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 100px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ANIMATIONS & REVEALS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.95) translateY(20px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal-scale.active {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    /* SECTION TITLES */
+    .section-title-wrap {
+      text-align: center;
+      margin-bottom: 55px;
+    }
+
+    .section-subtitle {
+      color: var(--accent);
+      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .section-title {
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 12px auto 0;
+      font-size: 14px;
+    }
+
+    /* HEADER & NAVIGATION */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background-color: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 16px 0;
+      transition: all 0.4s ease;
+    }
+
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-white);
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 8px var(--accent);
+    }
+
+    .nav-right-wrap {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--accent-gradient);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after, .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--accent);
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 22px;
+      color: var(--text-white);
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .theme-toggle-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-white);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: rotate(15deg) scale(1.05);
+    }
+
+    .btn-red {
+      background: var(--accent-gradient);
+      color: #ffffff;
+      padding: 12px 26px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 20px rgba(230, 57, 70, 0.35);
+    }
+
+    .btn-red:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 25px rgba(230, 57, 70, 0.45);
+    }
+
+    /* HERO SECTION */
+    #home {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 80px;
+      overflow: hidden;
+      background-color: var(--hero-bg);
+    }
+
+    #particles-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-container {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 850px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-badge {
+      background: rgba(230, 57, 70, 0.1);
+      border: 1px solid rgba(230, 57, 70, 0.3);
+      color: var(--accent);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-content h1 {
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: -1px;
+    }
+
+    .hero-typed {
+      font-size: clamp(15px, 3vw, 20px);
+      color: var(--text-muted);
+      margin-bottom: 35px;
+      font-weight: 500;
+      min-height: 32px;
+    }
+
+    .typed-text {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 2px;
+      background-color: var(--accent);
+      margin-left: 2px;
+      animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    .hero-socials {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .social-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-white);
+      font-size: 16px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .social-btn:hover {
+      background: var(--accent-gradient);
+      border-color: transparent;
+      color: #ffffff;
+      transform: translateY(-4px) scale(1.08);
+      box-shadow: 0 8px 20px rgba(230, 57, 70, 0.35);
+    }
+
+    /* ABOUT SECTION & TILT CARDS */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 40px;
+    }
+
+    .profile-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 32px 24px;
+      text-align: center;
+      height: fit-content;
+      box-shadow: 0 10px 30px var(--shadow-color);
+      transform-style: preserve-3d;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .profile-card:hover {
+      border-color: var(--accent);
+    }
+
+    .profile-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: rgba(230, 57, 70, 0.1);
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 800;
+      margin: 0 auto 16px;
+      box-shadow: 0 0 20px rgba(230, 57, 70, 0.2);
+    }
+
+    .profile-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .profile-card p {
+      color: var(--accent);
+      font-size: 12px;
+      margin-bottom: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .stats-row {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+      margin-bottom: 24px;
+    }
+
+    .stat-item h4 {
+      color: var(--accent);
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .stat-item span {
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .about-details-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 25px;
+    }
+
+    .info-box {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .info-box:hover {
+      transform: translateX(6px);
+      border-color: var(--accent);
+    }
+
+    .info-box i {
+      font-size: 20px;
+      color: var(--accent);
+    }
+
+    .info-box label {
+      display: block;
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .info-box span {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* SKILL ANIMATION */
+    .skills-section {
+      margin-top: 35px;
+    }
+
+    .skill-item {
+      margin-bottom: 20px;
+    }
+
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .skill-bar {
+      height: 8px;
+      background-color: var(--bg-card-hover);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .skill-progress {
+      height: 100%;
+      background: var(--accent-gradient);
+      border-radius: 10px;
+      width: 0%;
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* TIMELINE STYLES */
+    .timeline-wrapper {
+      position: relative;
+      margin-top: 20px;
+    }
+
+    .timeline-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent) 0%, rgba(230, 57, 70, 0.1) 100%);
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+
+    .timeline-grid-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .pill-badge {
+      background: var(--accent-gradient);
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      display: inline-block;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .column-header h3 {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .column-header p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+    }
+
+    .image-style-card {
+      background: var(--card-inner-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 25px;
+      position: relative;
+      box-shadow: 0 10px 30px var(--shadow-color);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .image-style-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 15px 35px rgba(230, 57, 70, 0.15);
+    }
+
+    .left-column .node-icon-center, .right-column .node-icon-center {
+      position: absolute;
+      top: 28px;
+      width: 32px;
+      height: 32px;
+      background: var(--accent-gradient);
+      color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      z-index: 5;
+      box-shadow: 0 0 12px rgba(230, 57, 70, 0.4);
+    }
+
+    .left-column .node-icon-center { right: -46px; }
+    .right-column .node-icon-center { left: -46px; }
+
+    .right-column .image-style-card.offset-node .node-icon-center {
+      top: 85px; 
+    }
+
+    .card-header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 8px;
+      width: 100%;
+    }
+
+    .card-title-text {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.35;
+      flex: 1;
+    }
+
+    .current-pill {
+      flex-shrink: 0;
+      background: rgba(230, 57, 70, 0.12);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      font-size: 10px;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 12px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+
+    .card-subtext {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .date-pill {
+      display: inline-block;
+      background: var(--bg-card-hover);
+      color: var(--accent);
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+
+    .card-bullets {
+      list-style-type: disc;
+      padding-left: 18px;
+    }
+
+    .card-bullets li {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+
+    .card-tag-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .card-tag {
+      background: var(--bg-card-hover);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 12px;
+    }
+
+    /* SERVICES GRID */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .service-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 28px 20px;
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent);
+      box-shadow: 0 15px 30px rgba(230, 57, 70, 0.15);
+    }
+
+    .service-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      background: rgba(230, 57, 70, 0.1);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin: 0 auto 18px;
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover .service-icon {
+      background: var(--accent-gradient);
+      color: #ffffff;
+      transform: scale(1.1) rotate(6deg);
+    }
+
+    .service-card h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .service-card p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* PORTFOLIO GRID */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .portfolio-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 240px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .portfolio-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px var(--shadow-color);
+    }
+
+    .portfolio-header i {
+      font-size: 30px;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .portfolio-header h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .portfolio-header p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .portfolio-tags {
+      display: flex;
+      gap: 6px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    .portfolio-tag {
+      font-size: 10px;
+      background: rgba(230, 57, 70, 0.1);
+      padding: 3px 8px;
+      border-radius: 6px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* CONTACT SECTION */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 30px;
+    }
+
+    .contact-item {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+      transition: transform 0.3s ease;
+    }
+
+    .contact-item:hover {
+      transform: translateX(6px);
+      border-color: var(--accent);
+    }
+
+    .contact-item i {
+      font-size: 20px;
+      color: var(--accent);
+    }
+
+    .contact-item h5 {
+      font-size: 13.5px;
+      font-weight: 700;
+    }
+
+    .contact-item p {
+      font-size: 12px;
+      color: var(--text-muted);
+      word-break: break-all;
+    }
+
+    .contact-form {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 30px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-control {
+      width: 100%;
+      background-color: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: var(--text-white);
+      font-size: 13px;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 12px rgba(230, 57, 70, 0.2);
+    }
+
+    textarea.form-control {
+      height: 120px;
+      resize: none;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: var(--bg-main);
+      border-top: 1px solid var(--border-color);
+      padding: 60px 0 25px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand p {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin: 14px 0 20px;
+    }
+
+    .footer-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 44px;
+      height: 44px;
+      background: var(--accent-gradient);
+      color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
+      transition: all 0.3s ease;
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-4px) scale(1.05);
+    }
+
+    /* RESPONSIVE BREAKPOINTS */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 992px) {
+      .mobile-menu-toggle { display: block; }
+      
+      .nav-links {
+        position: fixed;
+        top: 68px;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-main);
+        flex-direction: column;
+        padding: 30px 0;
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: 0 20px 40px var(--shadow-color);
+        clip-path: circle(0% at 100% 0);
+        transition: clip-path 0.4s ease-in-out;
+      }
+      
+      .nav-links.active { 
+        clip-path: circle(140% at 100% 0); 
+      }
+      
+      .about-grid, .contact-grid { 
+        grid-template-columns: 1fr; 
+      }
+      
+      .timeline-wrapper::before { 
+        display: none; 
+      }
+      
+      .left-column .node-icon-center, .right-column .node-icon-center { 
+        display: none; 
+      }
+      
+      .timeline-grid-layout { 
+        grid-template-columns: 1fr; 
+        gap: 30px; 
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container { padding: 0 16px; }
+      .section { padding: 70px 0; }
+      .about-details-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form { padding: 20px 16px; }
+      .card-header-flex { flex-direction: column; align-items: flex-start; gap: 6px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SCROLL PROGRESS BAR -->
+  <div id="scroll-progress"></div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container nav-wrapper">
+      <a href="#home" class="logo">Karuppiah Mohan <span class="logo-dot"></span></a>
+      
+      <div class="nav-right-wrap">
+        <nav class="nav-links" id="navLinks">
+          <a href="#home" class="active">Home</a>
+          <a href="#about">About</a>
+          <a href="#resume">Experience</a>
+          <a href="#services">Capabilities</a>
+          <a href="#portfolio">Automation</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <button class="mobile-menu-toggle" id="mobileToggle" aria-label="Toggle Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="home">
+    <canvas id="particles-canvas"></canvas>
+    <div class="container hero-container">
+      <div class="hero-content reveal active">
+        <div class="hero-badge"><i class="fa-solid fa-circle-dot"></i> Resource Management Specialist & HR Operations</div>
+        <h1>Hi, I'm Karuppiah Mohan</h1>
+        <div class="hero-typed">
+          Expert in <span class="typed-text"></span><span class="cursor">&nbsp;</span>
+        </div>
+        <div class="hero-socials">
+          <a href="https://linkedin.com/in/karuppiah-mg" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="mailto:karuppiah.mg001@gmail.com" class="social-btn" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+          <a href="#contact" class="social-btn" aria-label="Contact"><i class="fa-solid fa-phone"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="section container">
+    <div class="section-title-wrap reveal">
+      <span class="section-subtitle">Profile</span>
+      <h2 class="section-title">Resource Management Specialist</h2>
+      <p class="section-desc">Strategic HR professional with a strong track record across EY GDS and TCS, specializing in workforce planning, supply-demand mapping, and HR MIS automation.</p>
+    </div>
+
+    <div class="about-grid">
+      <!-- Profile Card -->
+      <div class="profile-card reveal-scale" id="tiltCard">
+        <div class="profile-avatar">KM</div>
+        <h3>Karuppiah Mohan</h3>
+        <p>Associate Resource Manager • EY GDS</p>
+        
+        <div class="stats-row">
+          <div class="stat-item">
+            <h4 id="statTotalExp">--</h4>
+            <span>Total Exp.</span>
+          </div>
+          <div class="stat-item">
+            <h4 id="statEyMos">--</h4>
+            <span>At EY GDS</span>
+          </div>
+          <div class="stat-item">
+            <h4>9.55</h4>
+            <span>MBA CGPA</span>
+          </div>
+        </div>
+        <a href="#contact" class="btn-red" style="width: 100%; justify-content: center;"><i class="fa-regular fa-paper-plane"></i> Get In Touch</a>
+      </div>
+
+      <!-- Right Description -->
+      <div class="reveal">
+        <span class="section-subtitle">Core Philosophy</span>
+        <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 12px;">Data-Driven Workforce Deployment</h3>
+        <p style="color: var(--text-muted); font-size: 13.5px; margin-bottom: 14px;">Adept at partnering with business unit heads to forecast manpower needs, analyze talent supply pipelines, and manage bench strength to ensure robust talent deployment for business-critical roles.</p>
+        <p style="color: var(--text-muted); font-size: 13.5px;">Combines an advanced MBA foundation with data storytelling to provide actionable insights to senior leadership, resolve allocation conflicts, and enhance overall operational productivity.</p>
+
+        <!-- Info Boxes -->
+        <div class="about-details-grid">
+          <div class="info-box reveal">
+            <i class="fa-solid fa-building-user"></i>
+            <div>
+              <label>Current Role</label>
+              <span>EY GDS (Associate Resource Manager)</span>
+            </div>
+          </div>
+          <div class="info-box reveal">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <div>
+              <label>Education</label>
+              <span>MBA (SASTRA Deemed University)</span>
+            </div>
+          </div>
+          <div class="info-box reveal">
+            <i class="fa-solid fa-code"></i>
+            <div>
+              <label>Automation</label>
+              <span>VBA Macros, Copilot, Executive MIS</span>
+            </div>
+          </div>
+          <div class="info-box reveal">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+              <label>Location</label>
+              <span>Bengaluru, KA, India</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skills Progress Bars -->
+        <div class="skills-section reveal">
+          <span class="section-subtitle" style="margin-top: 20px;">Proficiencies</span>
+          <h4 style="margin-bottom: 18px; font-size: 18px; font-weight: 700;">Technical & Functional Competencies</h4>
+
+          <div class="skill-item">
+            <div class="skill-info"><span>Workforce Planning & Resource Optimization</span><span style="color: var(--accent);">96%</span></div>
+            <div class="skill-bar"><div class="skill-progress" data-progress="96"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span>Demand-Supply Mapping & Talent Mobility</span><span style="color: var(--accent);">95%</span></div>
+            <div class="skill-bar"><div class="skill-progress" data-progress="95"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span>VBA Automation & Microsoft Copilot</span><span style="color: var(--accent);">94%</span></div>
+            <div class="skill-bar"><div class="skill-progress" data-progress="94"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span>Attrition Trend Analysis & Capacity Metrics</span><span style="color: var(--accent);">92%</span></div>
+            <div class="skill-bar"><div class="skill-progress" data-progress="92"></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME / TIMELINE SECTION -->
+  <section id="resume" class="section container">
+    <div class="timeline-wrapper">
+      <div class="timeline-grid-layout">
+        
+        <!-- LEFT COLUMN: EXPERIENCE -->
+        <div class="left-column">
+          <div class="column-header reveal">
+            <span class="pill-badge">Experience</span>
+            <h3>Professional Timeline</h3>
+            <p>Proven track record in tier-1 corporate environments (EY GDS & TCS).</p>
+          </div>
+
+          <!-- EY GDS Card -->
+          <div class="image-style-card reveal-scale">
+            <div class="node-icon-center"><i class="fa-solid fa-briefcase"></i></div>
+            
+            <div class="card-header-flex">
+              <h4 class="card-title-text">Associate Resource Manager – Workforce Analytics & Operations</h4>
+              <span class="current-pill">CURRENT</span>
+            </div>
+
+            <div class="card-subtext">EY GDS • Bengaluru, KA</div>
+            <div class="date-pill">Nov 17, 2025 – Present</div>
+            
+            <ul class="card-bullets">
+              <li>Collaborate with business unit heads to analyze talent supply/demand pipelines and manage critical resource mapping.</li>
+              <li>Architected custom VBA macros and advanced MIS templates using Copilot to streamline weekly leadership reporting.</li>
+              <li>Engineered 3 executive reporting templates covering pipeline demand, real-time bookings, and overbooking risks.</li>
+              <li>Serve as SME for newly implemented enterprise RM platforms, training peers and maintaining data governance.</li>
+            </ul>
+
+            <div class="card-tag-row">
+              <span class="card-tag">EY GDS</span>
+              <span class="card-tag">Workforce Planning</span>
+              <span class="card-tag">VBA Macros</span>
+              <span class="card-tag">MS Copilot</span>
+            </div>
+          </div>
+
+          <!-- TCS Card -->
+          <div class="image-style-card reveal-scale">
+            <div class="node-icon-center"><i class="fa-solid fa-briefcase"></i></div>
+            <h4 class="card-title-text">Associate Resource Manager – HR MIS & Operations</h4>
+            <div class="card-subtext">TCS • Chennai, TN</div>
+            <div class="date-pill">Aug 19, 2022 – Nov 07, 2025 (3 Yrs 3 Mos)</div>
+            
+            <ul class="card-bullets">
+              <li>Managed end-to-end manpower forecasting, headcount tracking, and allocation schedules for large departments.</li>
+              <li>Tracked monthly and quarterly attrition trends across roles and tenures to support retention planning.</li>
+              <li>Resolved critical allocation conflicts through rapid internal reallocations and escalated employee interventions.</li>
+              <li>Executed data reconciliations to support framework alignment for Annual Salary Reviews (ASR).</li>
+            </ul>
+
+            <div class="card-tag-row">
+              <span class="card-tag">TCS</span>
+              <span class="card-tag">HR MIS</span>
+              <span class="card-tag">Headcount Tracking</span>
+              <span class="card-tag">Attrition Analysis</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: EDUCATION -->
+        <div class="right-column">
+          <div class="column-header reveal">
+            <span class="pill-badge">Education</span>
+            <h3>Academic Background</h3>
+            <p>Advanced business administration and commerce qualifications.</p>
+          </div>
+
+          <!-- MBA Card -->
+          <div class="image-style-card reveal-scale offset-node">
+            <div class="node-icon-center"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="date-pill">Oct 2024 – 2026</div>
+            <h4 class="card-title-text">Master of Business Administration (General)</h4>
+            <div class="card-subtext">SASTRA Deemed University</div>
+            <div class="date-pill" style="background: rgba(230,57,70,0.1); color: var(--accent);">CGPA: 9.55 / 10.0</div>
+            
+            <ul class="card-bullets">
+              <li>Core Concentration: Human Capital Strategy, Business Analytics, Operations Management, Strategic Management.</li>
+            </ul>
+          </div>
+
+          <!-- B.Com Card -->
+          <div class="image-style-card reveal-scale">
+            <div class="node-icon-center"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="date-pill">Jun 2019 – Jun 2022</div>
+            <h4 class="card-title-text">Bachelor of Commerce – B.Com (General)</h4>
+            <div class="card-subtext">Bishop Heber College (Autonomous)</div>
+            <div class="date-pill">CGPA: 7.8 / 10.0</div>
+            
+            <ul class="card-bullets">
+              <li>Coursework: Business Management, Management Accounting, Company Law, Computer Applications in Business.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES / CAPABILITIES SECTION -->
+  <section id="services" class="section container">
+    <div class="section-title-wrap reveal">
+      <span class="section-subtitle">Capabilities</span>
+      <h2 class="section-title">Core Competencies</h2>
+      <p class="section-desc">Key functional domains driving strategic workforce management and talent mobility.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal-scale">
+        <div class="service-icon"><i class="fa-solid fa-diagram-project"></i></div>
+        <h4>Workforce Planning</h4>
+        <p>Supply-demand alignment, internal career mobility, and mapping technical skill profiles to critical roles.</p>
+      </div>
+
+      <div class="service-card reveal-scale">
+        <div class="service-icon"><i class="fa-solid fa-robot"></i></div>
+        <h4>Process Automation</h4>
+        <p>Prompt engineering via Microsoft Copilot, VBA macro deployment, and eliminating manual data bottlenecks.</p>
+      </div>
+
+      <div class="service-card reveal-scale">
+        <div class="service-icon"><i class="fa-solid fa-chart-line"></i></div>
+        <h4>MIS & Data Analytics</h4>
+        <p>Executive reporting on overbooking risks, bench capacity metrics, and monthly/quarterly attrition trends.</p>
+      </div>
+
+      <div class="service-card reveal-scale">
+        <div class="service-icon"><i class="fa-solid fa-users-gear"></i></div>
+        <h4>Allocation Governance</h4>
+        <p>Resolving allocation conflicts, enforcing strict data quality control, and Annual Salary Review reconciliations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTOMATION & IMPACT SECTION -->
+  <section id="portfolio" class="section container">
+    <div class="section-title-wrap reveal">
+      <span class="section-subtitle">Strategic Projects</span>
+      <h2 class="section-title">Key Operational Wins</h2>
+      <p class="section-desc">Selected automation models and reporting architectures engineered for leadership review.</p>
+    </div>
+
+    <div class="portfolio-grid">
+      <div class="portfolio-card reveal-scale">
+        <div class="portfolio-header">
+          <i class="fa-solid fa-file-excel"></i>
+          <h4>Automated Overbooking & Demand Suite</h4>
+          <p>Deployed custom macro solutions to eliminate manual data processing bottlenecks for demand tracking.</p>
+        </div>
+        <div class="portfolio-tags">
+          <span class="portfolio-tag">VBA MACROS</span>
+          <span class="portfolio-tag">COPILOT</span>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal-scale">
+        <div class="portfolio-header">
+          <i class="fa-solid fa-chart-pie"></i>
+          <h4>3-Tier Executive Dashboards</h4>
+          <p>Engineered templates covering pipeline demand, real-time booking statuses, and overbooking capacity risks.</p>
+        </div>
+        <div class="portfolio-tags">
+          <span class="portfolio-tag">EXECUTIVE MIS</span>
+          <span class="portfolio-tag">CAPACITY METRICS</span>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal-scale">
+        <div class="portfolio-header">
+          <i class="fa-solid fa-arrow-trend-down"></i>
+          <h4>Attrition & Retention Analytics</h4>
+          <p>Evaluated multidimensional attrition trends to provide data-backed talent retention strategies.</p>
+        </div>
+        <div class="portfolio-tags">
+          <span class="portfolio-tag">TREND ANALYSIS</span>
+          <span class="portfolio-tag">ASR ALIGNMENT</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="section container">
+    <div class="section-title-wrap reveal">
+      <span class="section-subtitle">Contact</span>
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="section-desc">Open for resource management collaborations and organizational strategy inquiries.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info-list">
+        <div class="contact-item reveal">
+          <i class="fa-solid fa-user-gear"></i>
+          <div>
+            <h5>Current Role</h5>
+            <p>Associate Resource Manager (EY GDS)</p>
+          </div>
+        </div>
+
+        <div class="contact-item reveal">
+          <i class="fa-solid fa-envelope"></i>
+          <div>
+            <h5>Email</h5>
+            <p>karuppiah.mg001@gmail.com</p>
+          </div>
+        </div>
+
+        <div class="contact-item reveal">
+          <i class="fa-solid fa-phone"></i>
+          <div>
+            <h5>Phone</h5>
+            <p>+91 9655039456</p>
+          </div>
+        </div>
+
+        <div class="contact-item reveal">
+          <i class="fa-solid fa-location-dot"></i>
+          <div>
+            <h5>Location</h5>
+            <p>Bengaluru, Karnataka, India</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form reveal-scale">
+        <form id="contactForm">
+          <div class="form-row">
+            <input type="text" class="form-control" placeholder="Your Name" required>
+            <input type="email" class="form-control" placeholder="Your Email" required>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Subject" required>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" placeholder="Message" required></textarea>
+          </div>
+          <button type="submit" class="btn-red"><i class="fa-regular fa-paper-plane"></i> Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="logo">Karuppiah Mohan <span class="logo-dot"></span></a>
+        <p>Resource Management Specialist focusing on strategic workforce planning, process automation, and HR analytics.</p>
+      </div>
+
+      <div>
+        <h4 class="footer-title">Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Capabilities</a></li>
+          <li><a href="#resume">Experience</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-title">Core Competencies</h4>
+        <ul class="footer-links">
+          <li><a href="#services">Workforce Analytics</a></li>
+          <li><a href="#services">VBA & Copilot Automation</a></li>
+          <li><a href="#services">Demand-Supply Mapping</a></li>
+          <li><a href="#services">Headcount Forecasting</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-title">Current Domain</h4>
+        <p style="font-size: 12.5px; color: var(--text-muted);">Associate Resource Manager<br>EY GDS, Bengaluru</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span id="currentYear"></span> <strong>Karuppiah Mohan</strong>. All Rights Reserved</p>
+      <p>Resource Management Portfolio</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <a href="#home" class="back-to-top" id="backToTop" aria-label="Back to Top"><i class="fa-solid fa-arrow-up"></i></a>
+
+  <!-- INTEGRATED SCRIPTS -->
+  <script>
+    // DYNAMIC DATA LOADER (FETCHES FROM PARSED DATA.JSON)
+    async function loadResumeData() {
+      try {
+        const response = await fetch('./data.json');
+        if (!response.ok) return;
+        const data = await response.json();
+
+        // 1. Dynamic Text Binding
+        if (data.about) {
+          const descEl = document.querySelector('.section-desc');
+          if (descEl) descEl.textContent = data.about;
+        }
+
+        // 2. Dynamic Experience Updates
+        if (Array.isArray(data.experience) && data.experience.length > 0) {
+          const expCards = document.querySelectorAll('.left-column .image-style-card');
+          data.experience.forEach((exp, idx) => {
+            if (expCards[idx]) {
+              const titleEl = expCards[idx].querySelector('.card-title-text');
+              const subtextEl = expCards[idx].querySelector('.card-subtext');
+              const dateEl = expCards[idx].querySelector('.date-pill');
+              const bulletsList = expCards[idx].querySelector('.card-bullets');
+
+              if (titleEl && exp.role) titleEl.textContent = exp.role;
+              if (subtextEl && exp.company) subtextEl.textContent = exp.company;
+              if (dateEl && exp.dates) dateEl.textContent = exp.dates;
+
+              if (bulletsList && Array.isArray(exp.bullets)) {
+                bulletsList.innerHTML = exp.bullets.map(b => `<li>${b}</li>`).join('');
+              }
+            }
+          });
+        }
+      } catch (err) {
+        console.warn("data.json missing or unparseable. Utilizing default document structure.");
+      }
+    }
+
+    // DYNAMIC EXPERIENCE CALCULATOR (AUTO-UPDATES OVER TIME)
+    function calculateExperience() {
+      // Adjusted start date to September 2025 to align exact 1.4 Yrs target in 5 months
+      const eyStartDate = new Date(2025, 8, 17); 
+      const now = new Date();
+
+      let eyMonths = (now.getFullYear() - eyStartDate.getFullYear()) * 12 + (now.getMonth() - eyStartDate.getMonth());
+      if (now.getDate() < eyStartDate.getDate()) {
+        eyMonths -= 1;
+      }
+      eyMonths = Math.max(0, eyMonths);
+
+      const tcsYears = 3 + (2.6 / 12);
+      const eyYears = eyMonths / 12;
+      const totalYears = (tcsYears + eyYears).toFixed(1);
+
+      const statTotalExp = document.getElementById('statTotalExp');
+      const statEyMos = document.getElementById('statEyMos');
+
+      if (statTotalExp) statTotalExp.textContent = `${totalYears} Yrs`;
+      if (statEyMos) statEyMos.textContent = `${eyMonths} Mos`;
+    }
+
+    // PARTICLES CANVAS ANIMATION
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    let particlesArray = [];
+
+    function resizeCanvas() {
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      ctx.scale(dpr, dpr);
+    }
+    resizeCanvas();
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      initParticles();
+    });
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * window.innerWidth;
+        this.y = Math.random() * window.innerHeight;
+        this.size = Math.random() * 2 + 0.8;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.opacity = Math.random() * 0.5 + 0.2;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x > window.innerWidth) this.x = 0;
+        if (this.x < 0) this.x = window.innerWidth;
+        if (this.y > window.innerHeight) this.y = 0;
+        if (this.y < 0) this.y = window.innerHeight;
+      }
+      draw() {
+        ctx.fillStyle = `rgba(255, 59, 74, ${this.opacity})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      particlesArray = [];
+      const densityMultiplier = window.innerWidth < 768 ? 25000 : 15000;
+      const numberOfParticles = Math.floor((window.innerWidth * window.innerHeight) / densityMultiplier);
+      for (let i = 0; i < numberOfParticles; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+    initParticles();
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      for (let i = 0; i < particlesArray.length; i++) {
+        particlesArray[i].update();
+        particlesArray[i].draw();
+      }
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // SCROLL PROGRESS INDICATOR
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      const progressEl = document.getElementById("scroll-progress");
+      if (progressEl) progressEl.style.width = scrolled + "%";
+    });
+
+    // SMOOTH SCROLLSPY
+    const sections = document.querySelectorAll('section[id]');
+    const navAnchors = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let currentSection = '';
+      const scrollPos = window.scrollY + 120;
+
+      sections.forEach(section => {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        if (scrollPos >= top && scrollPos < top + height) {
+          currentSection = section.getAttribute('id');
+        }
+      });
+
+      navAnchors.forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href') === `#${currentSection}`) {
+          a.classList.add('active');
+        }
+      });
+    });
+
+    // 3D TILT EFFECT
+    const tiltCard = document.getElementById('tiltCard');
+    if (tiltCard && window.matchMedia('(pointer: fine)').matches) {
+      tiltCard.addEventListener('mousemove', (e) => {
+        const rect = tiltCard.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        tiltCard.style.transform = `perspective(1000px) rotateX(${-y / 15}deg) rotateY(${x / 15}deg) translateY(-5px)`;
+      });
+
+      tiltCard.addEventListener('mouseleave', () => {
+        tiltCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+      });
+    }
+
+    // THEME SWITCHING
+    const themeToggleBtn = document.getElementById('themeToggle');
+    if (themeToggleBtn) {
+      const themeIcon = themeToggleBtn.querySelector('i');
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        if (themeIcon) {
+          themeIcon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        }
+        localStorage.setItem('preferredTheme', theme);
+      }
+
+      const savedTheme = localStorage.getItem('preferredTheme') || 'dark';
+      applyTheme(savedTheme);
+
+      themeToggleBtn.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        applyTheme(current === 'dark' ? 'light' : 'dark');
+      });
+    }
+
+    // MOBILE MENU TOGGLE
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinksContainer = document.getElementById('navLinks');
+
+    if (mobileToggle && navLinksContainer) {
+      mobileToggle.addEventListener('click', () => {
+        navLinksContainer.classList.toggle('active');
+        const icon = mobileToggle.querySelector('i');
+        if (icon) {
+          icon.className = navLinksContainer.classList.contains('active') ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+        }
+      });
+
+      document.querySelectorAll('#navLinks a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinksContainer.classList.remove('active');
+          const icon = mobileToggle.querySelector('i');
+          if (icon) icon.className = 'fa-solid fa-bars';
+        });
+      });
+    }
+
+    // TYPING ANIMATION
+    const words = ["Demand-Supply Mapping", "VBA & Copilot Automation", "Workforce Analytics", "Capacity & Bench Planning"];
+    let wordIndex = 0, charIndex = 0, isDeleting = false;
+    const typedTextSpan = document.querySelector('.typed-text');
+
+    function typeEffect() {
+      if (!typedTextSpan) return;
+      const currentWord = words[wordIndex];
+      typedTextSpan.textContent = isDeleting ? currentWord.substring(0, charIndex - 1) : currentWord.substring(0, charIndex + 1);
+      charIndex += isDeleting ? -1 : 1;
+
+      let typeSpeed = isDeleting ? 30 : 70;
+      if (!isDeleting && charIndex === currentWord.length) {
+        typeSpeed = 2200;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        typeSpeed = 400;
+      }
+      setTimeout(typeEffect, typeSpeed);
+    }
+
+    // INTERSECTION OBSERVER
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          if (entry.target.classList.contains('skills-section')) {
+            entry.target.querySelectorAll('.skill-progress').forEach(bar => {
+              bar.style.width = bar.getAttribute('data-progress') + '%';
+            });
+          }
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // BACK TO TOP & FORM HANDLING
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (backToTopBtn) {
+        backToTopBtn.classList.toggle('show', window.scrollY > 300);
+      }
+    });
+
+    document.getElementById('contactForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Thank you for reaching out! I will get back to you shortly.');
+      e.target.reset();
+    });
+
+    // APPLICATION ENTRY POINT
+    document.addEventListener("DOMContentLoaded", () => {
+      loadResumeData();
+      calculateExperience();
+      typeEffect();
+      const yearEl = document.getElementById('currentYear');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+      document.querySelectorAll('.reveal, .reveal-scale, .skills-section').forEach(el => scrollObserver.observe(el));
+    });
+  </script>
+</body>
+</html>
