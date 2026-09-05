@@ -609,7 +609,7 @@
     }
 
     /* ==========================================================================
-       REFACTORED TIMELINE SECTION (DESKTOP STAGGER + MOBILE UNCURTAILED)
+       REFACTORED TIMELINE SECTION
        ========================================================================== */
     .timeline-container {
       position: relative;
@@ -643,7 +643,7 @@
       flex-direction: column;
     }
 
-    /* Desktop Stagger for Right Column (Option 2) */
+    /* Desktop Stagger for Right Column */
     @media (min-width: 769px) {
       .timeline-col-right {
         padding-top: 60px;
@@ -1117,7 +1117,7 @@
       transform: translateY(-4px) scale(1.05);
     }
 
-    /* RESPONSIVE BREAKPOINTS */
+    /* RESPONSIVE BREAKPOINTS & MOBILE FIXES */
     @media (max-width: 1024px) {
       .services-grid { grid-template-columns: repeat(2, 1fr); }
       .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1152,19 +1152,20 @@
         grid-template-columns: 1fr; 
       }
       
-      /* COMPLETE MOBILE TIMELINE FIX: Single Sequential Flow */
+      /* MOBILE TIMELINE SPACING FIX */
       .timeline-container {
-        padding-left: 20px;
+        padding-left: 36px;
+        position: relative;
       }
 
       .timeline-container::before {
-        left: 20px;
+        left: 15px;
         transform: none;
       }
 
       .timeline-dual-grid {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 30px;
       }
 
       .timeline-col-left, .timeline-col-right {
@@ -1178,12 +1179,16 @@
 
       .timeline-node-pin {
         display: flex !important;
-        left: -38px !important;
+        left: -36px !important;
         right: auto !important;
-        width: 32px;
-        height: 32px;
-        font-size: 12px;
-        top: 20px;
+        width: 30px;
+        height: 30px;
+        font-size: 11px;
+        top: 24px;
+      }
+
+      .mobile-edu-header {
+        margin-top: 20px;
       }
     }
 
@@ -1429,7 +1434,7 @@
 
         <!-- RIGHT COLUMN: EDUCATION -->
         <div class="timeline-column timeline-col-right">
-          <div class="timeline-header reveal">
+          <div class="timeline-header reveal mobile-edu-header">
             <span class="pill-badge">Education</span>
             <h3>Academic Background</h3>
             <p>Advanced business administration and commerce qualifications.</p>
