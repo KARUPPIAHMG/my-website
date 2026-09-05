@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Karuppiah Mohan | Resource Management Specialist</title>
+  <title>Karuppiah | Resource Management Specialist & HR Operations</title>
   
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -288,6 +288,28 @@
       box-shadow: 0 8px 25px rgba(230, 57, 70, 0.45);
     }
 
+    .btn-outline {
+      background: transparent;
+      color: var(--text-white);
+      border: 1px solid var(--border-color);
+      padding: 12px 26px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
     /* HERO SECTION */
     #home {
       position: relative;
@@ -403,7 +425,7 @@
       box-shadow: 0 8px 20px rgba(230, 57, 70, 0.35);
     }
 
-    /* ABOUT SECTION & TILT CARDS */
+    /* ABOUT SECTION */
     .about-grid {
       display: grid;
       grid-template-columns: 320px 1fr;
@@ -476,6 +498,41 @@
       color: var(--text-muted);
       text-transform: uppercase;
       font-weight: 700;
+    }
+
+    .card-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .card-social-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .card-social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background-color: var(--bg-main);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .card-social-btn:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      transform: translateY(-2px);
     }
 
     .about-details-grid {
@@ -551,30 +608,42 @@
       transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* TIMELINE STYLES */
-    .timeline-wrapper {
+    /* REFINED DUAL-COLUMN TIMELINE ARCHITECTURE */
+    .timeline-container {
       position: relative;
-      margin-top: 20px;
+      width: 100%;
+      margin-top: 30px;
     }
 
-    .timeline-wrapper::before {
+    /* Spine vertical line running straight through center */
+    .timeline-container::before {
       content: '';
       position: absolute;
       top: 0;
       bottom: 0;
       left: 50%;
       width: 2px;
-      background: linear-gradient(180deg, var(--accent) 0%, rgba(230, 57, 70, 0.1) 100%);
+      background: var(--border-color);
       transform: translateX(-50%);
       z-index: 1;
     }
 
-    .timeline-grid-layout {
+    .timeline-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      column-gap: 60px;
       position: relative;
       z-index: 2;
+    }
+
+    .timeline-col {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .timeline-header {
+      margin-bottom: 10px;
     }
 
     .pill-badge {
@@ -587,19 +656,56 @@
       border-radius: 20px;
       display: inline-block;
       letter-spacing: 1px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
-    .column-header h3 {
-      font-size: 26px;
+    .timeline-header h3 {
+      font-size: 24px;
       font-weight: 800;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
-    .column-header p {
+    .timeline-header p {
       font-size: 13px;
       color: var(--text-muted);
-      margin-bottom: 30px;
+    }
+
+    .timeline-card-wrap {
+      position: relative;
+    }
+
+    /* Central Node Anchors */
+    .timeline-node-pin {
+      position: absolute;
+      top: 24px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      z-index: 10;
+      box-shadow: 0 0 12px rgba(0,0,0,0.4);
+      transition: all 0.3s ease;
+    }
+
+    .timeline-col-left .timeline-node-pin {
+      right: -51px;
+    }
+
+    .timeline-col-right .timeline-node-pin {
+      left: -51px;
+    }
+
+    .timeline-card-wrap:hover .timeline-node-pin {
+      background: var(--accent-gradient);
+      color: #ffffff;
+      transform: scale(1.15);
+      box-shadow: 0 0 18px var(--accent);
     }
 
     .image-style-card {
@@ -607,8 +713,8 @@
       border: 1px solid var(--border-color);
       border-radius: 16px;
       padding: 24px;
-      margin-bottom: 25px;
       position: relative;
+      z-index: 2;
       box-shadow: 0 10px 30px var(--shadow-color);
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -617,29 +723,6 @@
       transform: translateY(-6px);
       border-color: var(--accent);
       box-shadow: 0 15px 35px rgba(230, 57, 70, 0.15);
-    }
-
-    .left-column .node-icon-center, .right-column .node-icon-center {
-      position: absolute;
-      top: 28px;
-      width: 32px;
-      height: 32px;
-      background: var(--accent-gradient);
-      color: #ffffff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      z-index: 5;
-      box-shadow: 0 0 12px rgba(230, 57, 70, 0.4);
-    }
-
-    .left-column .node-icon-center { right: -46px; }
-    .right-column .node-icon-center { left: -46px; }
-
-    .right-column .image-style-card.offset-node .node-icon-center {
-      top: 85px; 
     }
 
     .card-header-flex {
@@ -652,7 +735,7 @@
     }
 
     .card-title-text {
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 700;
       line-height: 1.35;
       flex: 1;
@@ -663,13 +746,20 @@
       background: rgba(230, 57, 70, 0.12);
       color: var(--accent);
       border: 1px solid var(--accent);
-      font-size: 10px;
+      font-size: 9.5px;
       font-weight: 800;
-      padding: 4px 12px;
+      padding: 3px 10px;
       border-radius: 12px;
       text-transform: uppercase;
       white-space: nowrap;
-      margin-top: 2px;
+    }
+
+    .degree-tag-badge {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      text-transform: uppercase;
     }
 
     .card-subtext {
@@ -718,10 +808,10 @@
       border-radius: 12px;
     }
 
-    /* SERVICES GRID */
+    /* SERVICES / CAPABILITIES GRID */
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
 
@@ -909,7 +999,7 @@
       resize: none;
     }
 
-    /* FOOTER */
+    /* FOOTER & BRAND SOCIALS */
     footer {
       background-color: var(--bg-main);
       border-top: 1px solid var(--border-color);
@@ -926,7 +1016,36 @@
     .footer-brand p {
       font-size: 12.5px;
       color: var(--text-muted);
-      margin: 14px 0 20px;
+      margin: 14px 0 16px;
+    }
+
+    .footer-social-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .footer-social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .footer-social-btn:hover {
+      color: #ffffff;
+      background: var(--accent-gradient);
+      border-color: transparent;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
     }
 
     .footer-title {
@@ -994,9 +1113,12 @@
       .services-grid { grid-template-columns: repeat(2, 1fr); }
       .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-grid { grid-template-columns: 1fr 1fr; }
+      .timeline-grid { column-gap: 40px; }
+      .timeline-col-left .timeline-node-pin { right: -41px; }
+      .timeline-col-right .timeline-node-pin { left: -41px; }
     }
 
-    @media (max-width: 992px) {
+    @media (max-width: 768px) {
       .mobile-menu-toggle { display: block; }
       
       .nav-links {
@@ -1021,18 +1143,10 @@
         grid-template-columns: 1fr; 
       }
       
-      .timeline-wrapper::before { 
-        display: none; 
-      }
-      
-      .left-column .node-icon-center, .right-column .node-icon-center { 
-        display: none; 
-      }
-      
-      .timeline-grid-layout { 
-        grid-template-columns: 1fr; 
-        gap: 30px; 
-      }
+      /* Mobile Single Column View Adjustment */
+      .timeline-container::before { display: none; }
+      .timeline-grid { grid-template-columns: 1fr; gap: 40px; }
+      .timeline-node-pin { display: none; }
     }
 
     @media (max-width: 640px) {
@@ -1056,7 +1170,7 @@
   <!-- HEADER -->
   <header>
     <div class="container nav-wrapper">
-      <a href="#home" class="logo">Karuppiah Mohan <span class="logo-dot"></span></a>
+      <a href="#home" class="logo">Karuppiah <span class="logo-dot"></span></a>
       
       <div class="nav-right-wrap">
         <nav class="nav-links" id="navLinks">
@@ -1064,12 +1178,12 @@
           <a href="#about">About</a>
           <a href="#resume">Experience</a>
           <a href="#services">Capabilities</a>
-          <a href="#portfolio">Automation</a>
+          <a href="#portfolio">Projects</a>
           <a href="#contact">Contact</a>
         </nav>
 
         <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Theme">
-          <i class="fa-solid fa-moon"></i>
+          <i class="fa-solid fa-sun"></i>
         </button>
 
         <button class="mobile-menu-toggle" id="mobileToggle" aria-label="Toggle Menu">
@@ -1085,7 +1199,7 @@
     <div class="container hero-container">
       <div class="hero-content reveal active">
         <div class="hero-badge"><i class="fa-solid fa-circle-dot"></i> Resource Management Specialist & HR Operations</div>
-        <h1>Hi, I'm Karuppiah Mohan</h1>
+        <h1>Hi, I'm Karuppiah</h1>
         <div class="hero-typed">
           Expert in <span class="typed-text"></span><span class="cursor">&nbsp;</span>
         </div>
@@ -1109,8 +1223,8 @@
     <div class="about-grid">
       <!-- Profile Card -->
       <div class="profile-card reveal-scale" id="tiltCard">
-        <div class="profile-avatar">KM</div>
-        <h3>Karuppiah Mohan</h3>
+        <div class="profile-avatar">K</div>
+        <h3>Karuppiah</h3>
         <p>Associate Resource Manager • EY GDS</p>
         
         <div class="stats-row">
@@ -1123,11 +1237,22 @@
             <span>At EY GDS</span>
           </div>
           <div class="stat-item">
-            <h4>9.55</h4>
+            <h4>9.5</h4>
             <span>MBA CGPA</span>
           </div>
         </div>
-        <a href="#contact" class="btn-red" style="width: 100%; justify-content: center;"><i class="fa-regular fa-paper-plane"></i> Get In Touch</a>
+
+        <div class="card-actions">
+          <a href="assets/resume.pdf" download="Karuppiah_Resume.pdf" class="btn-outline"><i class="fa-solid fa-download"></i> Download Resume</a>
+          <a href="#contact" class="btn-red" style="justify-content: center;"><i class="fa-regular fa-paper-plane"></i> Get In Touch</a>
+        </div>
+
+        <div class="card-social-links">
+          <a href="https://linkedin.com/in/karuppiah-mg" target="_blank" rel="noopener noreferrer" class="card-social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="card-social-btn" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="card-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="card-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
       </div>
 
       <!-- Right Description -->
@@ -1183,7 +1308,7 @@
             <div class="skill-bar"><div class="skill-progress" data-progress="95"></div></div>
           </div>
           <div class="skill-item">
-            <div class="skill-info"><span>VBA Automation & Microsoft Copilot</span><span style="color: var(--accent);">94%</span></div>
+            <div class="skill-info"><span>VBA Automation & Microsoft Copilot Integration</span><span style="color: var(--accent);">94%</span></div>
             <div class="skill-bar"><div class="skill-progress" data-progress="94"></div></div>
           </div>
           <div class="skill-item">
@@ -1198,99 +1323,129 @@
 
   <!-- RESUME / TIMELINE SECTION -->
   <section id="resume" class="section container">
-    <div class="timeline-wrapper">
-      <div class="timeline-grid-layout">
+    <div class="section-title-wrap reveal">
+      <span class="section-subtitle">Career Path</span>
+      <h2 class="section-title">Experience & Education</h2>
+    </div>
+
+    <div class="timeline-container">
+      <div class="timeline-grid">
         
-        <!-- LEFT COLUMN: EXPERIENCE -->
-        <div class="left-column">
-          <div class="column-header reveal">
+        <!-- LEFT COLUMN: PROFESSIONAL EXPERIENCE -->
+        <div class="timeline-col timeline-col-left">
+          <div class="timeline-header reveal">
             <span class="pill-badge">Experience</span>
-            <h3>Professional Timeline</h3>
+            <h3>Professional Journey</h3>
             <p>Proven track record in tier-1 corporate environments (EY GDS & TCS).</p>
           </div>
 
           <!-- EY GDS Card -->
-          <div class="image-style-card reveal-scale">
-            <div class="node-icon-center"><i class="fa-solid fa-briefcase"></i></div>
-            
-            <div class="card-header-flex">
-              <h4 class="card-title-text">Associate Resource Manager – Workforce Analytics & Operations</h4>
-              <span class="current-pill">CURRENT</span>
-            </div>
+          <div class="timeline-card-wrap reveal-scale">
+            <div class="timeline-node-pin"><i class="fa-solid fa-briefcase"></i></div>
+            <div class="image-style-card">
+              <div class="card-header-flex">
+                <h4 class="card-title-text">Associate Resource Manager – Workforce Analytics & Operations</h4>
+                <span class="current-pill">CURRENT</span>
+              </div>
 
-            <div class="card-subtext">EY GDS • Bengaluru, KA</div>
-            <div class="date-pill">Nov 17, 2025 – Present</div>
-            
-            <ul class="card-bullets">
-              <li>Collaborate with business unit heads to analyze talent supply/demand pipelines and manage critical resource mapping.</li>
-              <li>Architected custom VBA macros and advanced MIS templates using Copilot to streamline weekly leadership reporting.</li>
-              <li>Engineered 3 executive reporting templates covering pipeline demand, real-time bookings, and overbooking risks.</li>
-              <li>Serve as SME for newly implemented enterprise RM platforms, training peers and maintaining data governance.</li>
-            </ul>
+              <div class="card-subtext">EY GDS • Bengaluru, KA</div>
+              <div class="date-pill">Nov 2025 – Present</div>
+              
+              <ul class="card-bullets">
+                <li>Collaborate with business unit heads to analyze talent supply/demand pipelines and manage critical resource mapping.</li>
+                <li>Architected custom VBA macros and advanced MIS templates using Copilot to streamline weekly leadership reporting.</li>
+                <li>Engineered 3 executive reporting templates covering pipeline demand, real-time bookings, and overbooking risks.</li>
+                <li>Serve as SME for newly implemented enterprise RM platforms, training peers and maintaining data governance.</li>
+              </ul>
 
-            <div class="card-tag-row">
-              <span class="card-tag">EY GDS</span>
-              <span class="card-tag">Workforce Planning</span>
-              <span class="card-tag">VBA Macros</span>
-              <span class="card-tag">MS Copilot</span>
+              <div class="card-tag-row">
+                <span class="card-tag">EY GDS</span>
+                <span class="card-tag">Workforce Planning</span>
+                <span class="card-tag">VBA Macros</span>
+                <span class="card-tag">MS Copilot</span>
+              </div>
             </div>
           </div>
 
           <!-- TCS Card -->
-          <div class="image-style-card reveal-scale">
-            <div class="node-icon-center"><i class="fa-solid fa-briefcase"></i></div>
-            <h4 class="card-title-text">Associate Resource Manager – HR MIS & Operations</h4>
-            <div class="card-subtext">TCS • Chennai, TN</div>
-            <div class="date-pill">Aug 19, 2022 – Nov 07, 2025 (3 Yrs 3 Mos)</div>
-            
-            <ul class="card-bullets">
-              <li>Managed end-to-end manpower forecasting, headcount tracking, and allocation schedules for large departments.</li>
-              <li>Tracked monthly and quarterly attrition trends across roles and tenures to support retention planning.</li>
-              <li>Resolved critical allocation conflicts through rapid internal reallocations and escalated employee interventions.</li>
-              <li>Executed data reconciliations to support framework alignment for Annual Salary Reviews (ASR).</li>
-            </ul>
+          <div class="timeline-card-wrap reveal-scale">
+            <div class="timeline-node-pin"><i class="fa-solid fa-briefcase"></i></div>
+            <div class="image-style-card">
+              <div class="card-header-flex">
+                <h4 class="card-title-text">Associate Resource Manager – HR MIS & Operations</h4>
+              </div>
+              <div class="card-subtext">TCS • Chennai, TN</div>
+              <div class="date-pill">Aug 2022 – Nov 2025</div>
+              
+              <ul class="card-bullets">
+                <li>Managed end-to-end manpower forecasting, headcount tracking, and allocation schedules for large departments.</li>
+                <li>Tracked monthly and quarterly attrition trends across roles and tenures to support retention planning.</li>
+                <li>Resolved critical allocation conflicts through rapid internal reallocations and escalated employee interventions.</li>
+                <li>Executed data reconciliations to support framework alignment for Annual Salary Reviews (ASR).</li>
+              </ul>
 
-            <div class="card-tag-row">
-              <span class="card-tag">TCS</span>
-              <span class="card-tag">HR MIS</span>
-              <span class="card-tag">Headcount Tracking</span>
-              <span class="card-tag">Attrition Analysis</span>
+              <div class="card-tag-row">
+                <span class="card-tag">TCS</span>
+                <span class="card-tag">HR MIS</span>
+                <span class="card-tag">Headcount Tracking</span>
+                <span class="card-tag">Attrition Analysis</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- RIGHT COLUMN: EDUCATION -->
-        <div class="right-column">
-          <div class="column-header reveal">
+        <!-- RIGHT COLUMN: ACADEMIC EDUCATION -->
+        <div class="timeline-col timeline-col-right">
+          <div class="timeline-header reveal">
             <span class="pill-badge">Education</span>
             <h3>Academic Background</h3>
             <p>Advanced business administration and commerce qualifications.</p>
           </div>
 
           <!-- MBA Card -->
-          <div class="image-style-card reveal-scale offset-node">
-            <div class="node-icon-center"><i class="fa-solid fa-graduation-cap"></i></div>
-            <div class="date-pill">Oct 2024 – 2026</div>
-            <h4 class="card-title-text">Master of Business Administration (General)</h4>
-            <div class="card-subtext">SASTRA Deemed University</div>
-            <div class="date-pill" style="background: rgba(230,57,70,0.1); color: var(--accent);">CGPA: 9.55 / 10.0</div>
-            
-            <ul class="card-bullets">
-              <li>Core Concentration: Human Capital Strategy, Business Analytics, Operations Management, Strategic Management.</li>
-            </ul>
+          <div class="timeline-card-wrap reveal-scale">
+            <div class="timeline-node-pin"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="image-style-card">
+              <div class="card-header-flex">
+                <h4 class="card-title-text">Master of Business Administration (General)</h4>
+                <span class="degree-tag-badge">MASTERS</span>
+              </div>
+              <div class="card-subtext">SASTRA Deemed University</div>
+              <div class="date-pill" style="background: rgba(230,57,70,0.1); color: var(--accent);">Oct 2024 – 2026 • CGPA: 9.55 / 10.0</div>
+              
+              <ul class="card-bullets">
+                <li>Core Concentration: Human Capital Strategy, Business Analytics, Operations Management, Strategic Management.</li>
+              </ul>
+
+              <div class="card-tag-row">
+                <span class="card-tag">Masters</span>
+                <span class="card-tag">Human Capital Strategy</span>
+                <span class="card-tag">Business Analytics</span>
+              </div>
+            </div>
           </div>
 
           <!-- B.Com Card -->
-          <div class="image-style-card reveal-scale">
-            <div class="node-icon-center"><i class="fa-solid fa-graduation-cap"></i></div>
-            <div class="date-pill">Jun 2019 – Jun 2022</div>
-            <h4 class="card-title-text">Bachelor of Commerce – B.Com (General)</h4>
-            <div class="card-subtext">Bishop Heber College (Autonomous)</div>
-            <div class="date-pill">CGPA: 7.8 / 10.0</div>
-            
-            <ul class="card-bullets">
-              <li>Coursework: Business Management, Management Accounting, Company Law, Computer Applications in Business.</li>
-            </ul>
+          <div class="timeline-card-wrap reveal-scale">
+            <div class="timeline-node-pin"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="image-style-card">
+              <div class="card-header-flex">
+                <h4 class="card-title-text">Bachelor of Commerce – B.Com (General)</h4>
+                <span class="degree-tag-badge">BACHELOR</span>
+              </div>
+              <div class="card-subtext">Bishop Heber College (Autonomous)</div>
+              <div class="date-pill" style="background: rgba(230,57,70,0.1); color: var(--accent);">Jun 2019 – Jun 2022 • CGPA: 7.8 / 10.0</div>
+              
+              <ul class="card-bullets">
+                <li>Coursework: Business Management, Management Accounting, Company Law, Computer Applications in Business.</li>
+              </ul>
+
+              <div class="card-tag-row">
+                <span class="card-tag">Bachelors</span>
+                <span class="card-tag">Management Accounting</span>
+                <span class="card-tag">Commerce</span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -1314,26 +1469,38 @@
       </div>
 
       <div class="service-card reveal-scale">
-        <div class="service-icon"><i class="fa-solid fa-robot"></i></div>
-        <h4>Process Automation</h4>
-        <p>Prompt engineering via Microsoft Copilot, VBA macro deployment, and eliminating manual data bottlenecks.</p>
-      </div>
-
-      <div class="service-card reveal-scale">
         <div class="service-icon"><i class="fa-solid fa-chart-line"></i></div>
-        <h4>MIS & Data Analytics</h4>
-        <p>Executive reporting on overbooking risks, bench capacity metrics, and monthly/quarterly attrition trends.</p>
+        <h4>Capacity Forecasting</h4>
+        <p>Predictive headcount modeling and long-term talent capacity evaluations aligned with projected project demand.</p>
       </div>
 
       <div class="service-card reveal-scale">
-        <div class="service-icon"><i class="fa-solid fa-users-gear"></i></div>
-        <h4>Allocation Governance</h4>
-        <p>Resolving allocation conflicts, enforcing strict data quality control, and Annual Salary Review reconciliations.</p>
+        <div class="service-icon"><i class="fa-solid fa-users-slash"></i></div>
+        <h4>Bench Management</h4>
+        <p>Optimizing unallocated talent, controlling bench cost overheads, and executing rapid deployment strategies.</p>
+      </div>
+
+      <div class="service-card reveal-scale">
+        <div class="service-icon"><i class="fa-solid fa-arrow-trend-down"></i></div>
+        <h4>Attrition Analysis</h4>
+        <p>Evaluating multidimensional attrition trends and tenure patterns to provide data-backed talent retention insights.</p>
+      </div>
+
+      <div class="service-card reveal-scale">
+        <div class="service-icon"><i class="fa-solid fa-file-excel"></i></div>
+        <h4>Advanced Excel & VBA Automation</h4>
+        <p>Architecting custom macro suites, automated data pipelines, and interactive executive reporting tools.</p>
+      </div>
+
+      <div class="service-card reveal-scale">
+        <div class="service-icon"><i class="fa-solid fa-robot"></i></div>
+        <h4>Microsoft Copilot Integration</h4>
+        <p>Prompt engineering and AI workflow integration to accelerate operational synthesis and eliminate bottlenecks.</p>
       </div>
     </div>
   </section>
 
-  <!-- AUTOMATION & IMPACT SECTION -->
+  <!-- STRATEGIC PROJECTS SECTION -->
   <section id="portfolio" class="section container">
     <div class="section-title-wrap reveal">
       <span class="section-subtitle">Strategic Projects</span>
@@ -1344,21 +1511,9 @@
     <div class="portfolio-grid">
       <div class="portfolio-card reveal-scale">
         <div class="portfolio-header">
-          <i class="fa-solid fa-file-excel"></i>
-          <h4>Automated Overbooking & Demand Suite</h4>
-          <p>Deployed custom macro solutions to eliminate manual data processing bottlenecks for demand tracking.</p>
-        </div>
-        <div class="portfolio-tags">
-          <span class="portfolio-tag">VBA MACROS</span>
-          <span class="portfolio-tag">COPILOT</span>
-        </div>
-      </div>
-
-      <div class="portfolio-card reveal-scale">
-        <div class="portfolio-header">
           <i class="fa-solid fa-chart-pie"></i>
-          <h4>3-Tier Executive Dashboards</h4>
-          <p>Engineered templates covering pipeline demand, real-time booking statuses, and overbooking capacity risks.</p>
+          <h4>Executive MIS & Reporting Templates</h4>
+          <p>Engineered 3-tier executive templates covering pipeline demand, real-time booking statuses, and overbooking capacity risks.</p>
         </div>
         <div class="portfolio-tags">
           <span class="portfolio-tag">EXECUTIVE MIS</span>
@@ -1368,13 +1523,25 @@
 
       <div class="portfolio-card reveal-scale">
         <div class="portfolio-header">
-          <i class="fa-solid fa-arrow-trend-down"></i>
-          <h4>Attrition & Retention Analytics</h4>
-          <p>Evaluated multidimensional attrition trends to provide data-backed talent retention strategies.</p>
+          <i class="fa-solid fa-file-code"></i>
+          <h4>Automated VBA Demand Workflows</h4>
+          <p>Deployed custom VBA macro solutions and Copilot integrations to eliminate manual data processing bottlenecks for demand tracking.</p>
         </div>
         <div class="portfolio-tags">
-          <span class="portfolio-tag">TREND ANALYSIS</span>
-          <span class="portfolio-tag">ASR ALIGNMENT</span>
+          <span class="portfolio-tag">VBA MACROS</span>
+          <span class="portfolio-tag">COPILOT</span>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal-scale">
+        <div class="portfolio-header">
+          <i class="fa-solid fa-scale-balanced"></i>
+          <h4>Resource Allocation & Governance Frameworks</h4>
+          <p>Established robust governance frameworks to resolve allocation conflicts, maintain data hygiene, and support ASR alignment.</p>
+        </div>
+        <div class="portfolio-tags">
+          <span class="portfolio-tag">GOVERNANCE</span>
+          <span class="portfolio-tag">ALLOCATION STRATEGY</span>
         </div>
       </div>
     </div>
@@ -1410,7 +1577,7 @@
           <i class="fa-solid fa-phone"></i>
           <div>
             <h5>Phone</h5>
-            <p>+91 9655039456</p>
+            <p>9047007030</p>
           </div>
         </div>
 
@@ -1445,8 +1612,15 @@
   <footer>
     <div class="container footer-grid">
       <div class="footer-brand">
-        <a href="#home" class="logo">Karuppiah Mohan <span class="logo-dot"></span></a>
+        <a href="#home" class="logo">Karuppiah <span class="logo-dot"></span></a>
         <p>Resource Management Specialist focusing on strategic workforce planning, process automation, and HR analytics.</p>
+        
+        <div class="footer-social-row">
+          <a href="https://linkedin.com/in/karuppiah-mg" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
       </div>
 
       <div>
@@ -1476,7 +1650,7 @@
     </div>
 
     <div class="container footer-bottom">
-      <p>&copy; <span id="currentYear"></span> <strong>Karuppiah Mohan</strong>. All Rights Reserved</p>
+      <p>&copy; <span id="currentYear"></span> <strong>Karuppiah</strong>. All Rights Reserved</p>
       <p>Resource Management Portfolio</p>
     </div>
   </footer>
@@ -1486,64 +1660,30 @@
 
   <!-- INTEGRATED SCRIPTS -->
   <script>
-    // DYNAMIC DATA LOADER (FETCHES FROM PARSED DATA.JSON)
-    async function loadResumeData() {
-      try {
-        const response = await fetch('./data.json');
-        if (!response.ok) return;
-        const data = await response.json();
-
-        // 1. Dynamic Text Binding
-        if (data.about) {
-          const descEl = document.querySelector('.section-desc');
-          if (descEl) descEl.textContent = data.about;
-        }
-
-        // 2. Dynamic Experience Updates
-        if (Array.isArray(data.experience) && data.experience.length > 0) {
-          const expCards = document.querySelectorAll('.left-column .image-style-card');
-          data.experience.forEach((exp, idx) => {
-            if (expCards[idx]) {
-              const titleEl = expCards[idx].querySelector('.card-title-text');
-              const subtextEl = expCards[idx].querySelector('.card-subtext');
-              const dateEl = expCards[idx].querySelector('.date-pill');
-              const bulletsList = expCards[idx].querySelector('.card-bullets');
-
-              if (titleEl && exp.role) titleEl.textContent = exp.role;
-              if (subtextEl && exp.company) subtextEl.textContent = exp.company;
-              if (dateEl && exp.dates) dateEl.textContent = exp.dates;
-
-              if (bulletsList && Array.isArray(exp.bullets)) {
-                bulletsList.innerHTML = exp.bullets.map(b => `<li>${b}</li>`).join('');
-              }
-            }
-          });
-        }
-      } catch (err) {
-        console.warn("data.json missing or unparseable. Utilizing default document structure.");
-      }
-    }
-
-    // DYNAMIC EXPERIENCE CALCULATOR (AUTO-UPDATES OVER TIME)
+    // DYNAMIC EXPERIENCE CALCULATOR ENGINE
     function calculateExperience() {
-      // Adjusted start date to September 2025 to align exact 1.4 Yrs target in 5 months
-      const eyStartDate = new Date(2025, 8, 17); 
       const now = new Date();
 
-      let eyMonths = (now.getFullYear() - eyStartDate.getFullYear()) * 12 + (now.getMonth() - eyStartDate.getMonth());
-      if (now.getDate() < eyStartDate.getDate()) {
+      const tcsStart = new Date(2022, 7, 1);
+      const eyStart = new Date(2025, 10, 1);
+
+      let totalMonths = (now.getFullYear() - tcsStart.getFullYear()) * 12 + (now.getMonth() - tcsStart.getMonth());
+      if (now.getDate() < tcsStart.getDate()) {
+        totalMonths -= 1;
+      }
+      totalMonths = Math.max(0, totalMonths);
+      const totalYearsFormatted = (totalMonths / 12).toFixed(1);
+
+      let eyMonths = (now.getFullYear() - eyStart.getFullYear()) * 12 + (now.getMonth() - eyStart.getMonth());
+      if (now.getDate() < eyStart.getDate()) {
         eyMonths -= 1;
       }
       eyMonths = Math.max(0, eyMonths);
 
-      const tcsYears = 3 + (2.6 / 12);
-      const eyYears = eyMonths / 12;
-      const totalYears = (tcsYears + eyYears).toFixed(1);
-
       const statTotalExp = document.getElementById('statTotalExp');
       const statEyMos = document.getElementById('statEyMos');
 
-      if (statTotalExp) statTotalExp.textContent = `${totalYears} Yrs`;
+      if (statTotalExp) statTotalExp.textContent = `${totalYearsFormatted} Yrs`;
       if (statEyMos) statEyMos.textContent = `${eyMonths} Mos`;
     }
 
@@ -1754,7 +1894,6 @@
 
     // APPLICATION ENTRY POINT
     document.addEventListener("DOMContentLoaded", () => {
-      loadResumeData();
       calculateExperience();
       typeEffect();
       const yearEl = document.getElementById('currentYear');
