@@ -608,14 +608,16 @@
       transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* REFINED DUAL-COLUMN TIMELINE ARCHITECTURE */
+    /* ==========================================================================
+       REFACTORED TIMELINE SECTION (DESKTOP STAGGER + MOBILE UNCURTAILED)
+       ========================================================================== */
     .timeline-container {
       position: relative;
       width: 100%;
       margin-top: 30px;
     }
 
-    /* Spine vertical line running straight through center */
+    /* Central Spine (Desktop default) */
     .timeline-container::before {
       content: '';
       position: absolute;
@@ -628,22 +630,24 @@
       z-index: 1;
     }
 
-    .timeline-grid {
+    .timeline-dual-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      column-gap: 60px;
+      column-gap: 80px;
       position: relative;
       z-index: 2;
     }
 
-    .timeline-col {
+    .timeline-column {
       display: flex;
       flex-direction: column;
-      gap: 32px;
     }
 
-    .timeline-header {
-      margin-bottom: 10px;
+    /* Desktop Stagger for Right Column (Option 2) */
+    @media (min-width: 769px) {
+      .timeline-col-right {
+        padding-top: 60px;
+      }
     }
 
     .pill-badge {
@@ -659,6 +663,10 @@
       margin-bottom: 10px;
     }
 
+    .timeline-header {
+      margin-bottom: 30px;
+    }
+
     .timeline-header h3 {
       font-size: 24px;
       font-weight: 800;
@@ -672,12 +680,12 @@
 
     .timeline-card-wrap {
       position: relative;
+      margin-bottom: 35px;
     }
 
-    /* Central Node Anchors */
     .timeline-node-pin {
       position: absolute;
-      top: 24px;
+      top: 28px;
       width: 42px;
       height: 42px;
       border-radius: 50%;
@@ -694,11 +702,11 @@
     }
 
     .timeline-col-left .timeline-node-pin {
-      right: -51px;
+      right: -61px;
     }
 
     .timeline-col-right .timeline-node-pin {
-      left: -51px;
+      left: -61px;
     }
 
     .timeline-card-wrap:hover .timeline-node-pin {
@@ -782,6 +790,7 @@
     .card-bullets {
       list-style-type: disc;
       padding-left: 18px;
+      margin-bottom: 14px;
     }
 
     .card-bullets li {
@@ -1113,9 +1122,9 @@
       .services-grid { grid-template-columns: repeat(2, 1fr); }
       .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-grid { grid-template-columns: 1fr 1fr; }
-      .timeline-grid { column-gap: 40px; }
-      .timeline-col-left .timeline-node-pin { right: -41px; }
-      .timeline-col-right .timeline-node-pin { left: -41px; }
+      .timeline-dual-grid { column-gap: 50px; }
+      .timeline-col-left .timeline-node-pin { right: -46px; }
+      .timeline-col-right .timeline-node-pin { left: -46px; }
     }
 
     @media (max-width: 768px) {
@@ -1143,10 +1152,39 @@
         grid-template-columns: 1fr; 
       }
       
-      /* Mobile Single Column View Adjustment */
-      .timeline-container::before { display: none; }
-      .timeline-grid { grid-template-columns: 1fr; gap: 40px; }
-      .timeline-node-pin { display: none; }
+      /* COMPLETE MOBILE TIMELINE FIX: Single Sequential Flow */
+      .timeline-container {
+        padding-left: 20px;
+      }
+
+      .timeline-container::before {
+        left: 20px;
+        transform: none;
+      }
+
+      .timeline-dual-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .timeline-col-left, .timeline-col-right {
+        padding-top: 0;
+        width: 100%;
+      }
+
+      .timeline-card-wrap {
+        margin-bottom: 25px;
+      }
+
+      .timeline-node-pin {
+        display: flex !important;
+        left: -38px !important;
+        right: auto !important;
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+        top: 20px;
+      }
     }
 
     @media (max-width: 640px) {
@@ -1329,17 +1367,17 @@
     </div>
 
     <div class="timeline-container">
-      <div class="timeline-grid">
+      <div class="timeline-dual-grid">
         
-        <!-- LEFT COLUMN: PROFESSIONAL EXPERIENCE -->
-        <div class="timeline-col timeline-col-left">
+        <!-- LEFT COLUMN: EXPERIENCE -->
+        <div class="timeline-column timeline-col-left">
           <div class="timeline-header reveal">
             <span class="pill-badge">Experience</span>
             <h3>Professional Journey</h3>
             <p>Proven track record in tier-1 corporate environments (EY GDS & TCS).</p>
           </div>
 
-          <!-- EY GDS Card -->
+          <!-- CARD 1: EY GDS -->
           <div class="timeline-card-wrap reveal-scale">
             <div class="timeline-node-pin"><i class="fa-solid fa-briefcase"></i></div>
             <div class="image-style-card">
@@ -1347,17 +1385,14 @@
                 <h4 class="card-title-text">Associate Resource Manager – Workforce Analytics & Operations</h4>
                 <span class="current-pill">CURRENT</span>
               </div>
-
               <div class="card-subtext">EY GDS • Bengaluru, KA</div>
               <div class="date-pill">Nov 2025 – Present</div>
-              
               <ul class="card-bullets">
                 <li>Collaborate with business unit heads to analyze talent supply/demand pipelines and manage critical resource mapping.</li>
                 <li>Architected custom VBA macros and advanced MIS templates using Copilot to streamline weekly leadership reporting.</li>
                 <li>Engineered 3 executive reporting templates covering pipeline demand, real-time bookings, and overbooking risks.</li>
                 <li>Serve as SME for newly implemented enterprise RM platforms, training peers and maintaining data governance.</li>
               </ul>
-
               <div class="card-tag-row">
                 <span class="card-tag">EY GDS</span>
                 <span class="card-tag">Workforce Planning</span>
@@ -1367,7 +1402,7 @@
             </div>
           </div>
 
-          <!-- TCS Card -->
+          <!-- CARD 2: TCS -->
           <div class="timeline-card-wrap reveal-scale">
             <div class="timeline-node-pin"><i class="fa-solid fa-briefcase"></i></div>
             <div class="image-style-card">
@@ -1376,14 +1411,12 @@
               </div>
               <div class="card-subtext">TCS • Chennai, TN</div>
               <div class="date-pill">Aug 2022 – Nov 2025</div>
-              
               <ul class="card-bullets">
                 <li>Managed end-to-end manpower forecasting, headcount tracking, and allocation schedules for large departments.</li>
                 <li>Tracked monthly and quarterly attrition trends across roles and tenures to support retention planning.</li>
                 <li>Resolved critical allocation conflicts through rapid internal reallocations and escalated employee interventions.</li>
                 <li>Executed data reconciliations to support framework alignment for Annual Salary Reviews (ASR).</li>
               </ul>
-
               <div class="card-tag-row">
                 <span class="card-tag">TCS</span>
                 <span class="card-tag">HR MIS</span>
@@ -1394,15 +1427,15 @@
           </div>
         </div>
 
-        <!-- RIGHT COLUMN: ACADEMIC EDUCATION -->
-        <div class="timeline-col timeline-col-right">
+        <!-- RIGHT COLUMN: EDUCATION -->
+        <div class="timeline-column timeline-col-right">
           <div class="timeline-header reveal">
             <span class="pill-badge">Education</span>
             <h3>Academic Background</h3>
             <p>Advanced business administration and commerce qualifications.</p>
           </div>
 
-          <!-- MBA Card -->
+          <!-- CARD 1: MBA -->
           <div class="timeline-card-wrap reveal-scale">
             <div class="timeline-node-pin"><i class="fa-solid fa-graduation-cap"></i></div>
             <div class="image-style-card">
@@ -1412,11 +1445,10 @@
               </div>
               <div class="card-subtext">SASTRA Deemed University</div>
               <div class="date-pill" style="background: rgba(230,57,70,0.1); color: var(--accent);">Oct 2024 – 2026 • CGPA: 9.55 / 10.0</div>
-              
               <ul class="card-bullets">
                 <li>Core Concentration: Human Capital Strategy, Business Analytics, Operations Management, Strategic Management.</li>
+                <li>Advanced research in organizational performance metrics and data-driven talent optimization.</li>
               </ul>
-
               <div class="card-tag-row">
                 <span class="card-tag">Masters</span>
                 <span class="card-tag">Human Capital Strategy</span>
@@ -1425,7 +1457,7 @@
             </div>
           </div>
 
-          <!-- B.Com Card -->
+          <!-- CARD 2: B.COM -->
           <div class="timeline-card-wrap reveal-scale">
             <div class="timeline-node-pin"><i class="fa-solid fa-graduation-cap"></i></div>
             <div class="image-style-card">
@@ -1435,11 +1467,10 @@
               </div>
               <div class="card-subtext">Bishop Heber College (Autonomous)</div>
               <div class="date-pill" style="background: rgba(230,57,70,0.1); color: var(--accent);">Jun 2019 – Jun 2022 • CGPA: 7.8 / 10.0</div>
-              
               <ul class="card-bullets">
                 <li>Coursework: Business Management, Management Accounting, Company Law, Computer Applications in Business.</li>
+                <li>Solid foundational studies in financial management, corporate structures, and business operations.</li>
               </ul>
-
               <div class="card-tag-row">
                 <span class="card-tag">Bachelors</span>
                 <span class="card-tag">Management Accounting</span>
