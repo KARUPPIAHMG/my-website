@@ -1661,8 +1661,16 @@
 
       <div class="contact-form reveal-scale">
         <!-- WEB3FORMS DIRECT API INTEGRATION -->
-        <form id="contactForm">
+        <!-- action/method below are a no-JS fallback: if fetch/JS fails, the browser
+             still POSTs the form straight to Web3Forms and redirects to the thank-you page -->
+        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="2da6bf77-781b-4f79-b2f3-e09ba5f41061">
+          <input type="hidden" name="from_name" value="Portfolio Contact Form">
+          <input type="hidden" name="redirect" value="https://web3forms.com/success">
+          <!-- Honeypot: bots fill this in, real users never see it. Web3Forms auto-drops
+               submissions where this field is non-empty, so spam never reaches your inbox -->
+          <input type="checkbox" name="botcheck" id="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+
           <div class="form-row">
             <input type="text" name="name" class="form-control" placeholder="Your Name" required>
             <input type="email" name="email" class="form-control" placeholder="Your Email" required>
@@ -1671,10 +1679,10 @@
             <input type="text" name="subject" class="form-control" placeholder="Subject" required>
           </div>
           <div class="form-group">
-            <textarea name="message" class="form-control" placeholder="Message" required></textarea>
+            <textarea name="message" class="form-control" placeholder="Message" required minlength="10"></textarea>
           </div>
           <button type="submit" class="btn-red" id="submitBtn"><i class="fa-regular fa-paper-plane"></i> Send Message</button>
-          <div id="form-status"></div>
+          <div id="form-status" role="status" aria-live="polite"></div>
         </form>
       </div>
     </div>
@@ -1980,7 +1988,23 @@
     if (contactForm) {
       contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
-        
+
+        // Honeypot check: if this hidden checkbox got checked, it was a bot.
+        // Silently pretend success and bail out — no request is sent, no need to alarm a bot either.
+        const botField = document.getElementById('botcheck');
+        if (botField && botField.checked) {
+          formStatus.textContent = 'Message sent successfully! I will respond shortly.';
+          formStatus.className = 'success';
+          contactForm.reset();
+          return;
+        }
+
+        // Basic client-side sanity check before we even hit the network
+        if (!contactForm.checkValidity()) {
+          contactForm.reportValidity();
+          return;
+        }
+
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Transmitting...';
         formStatus.className = '';
@@ -1988,24 +2012,43 @@
 
         const formData = new FormData(contactForm);
 
+        // Abort the request if Web3Forms doesn't respond within 15s, so the button
+        // never gets stuck on "Transmitting..." forever
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 15000);
+
         try {
           const response = await fetch('https://api.web3forms.com/submit', {
             method: 'POST',
-            body: formData
+            headers: { 'Accept': 'application/json' },
+            body: formData,
+            signal: controller.signal
           });
 
-          const data = await response.json();
+          clearTimeout(timeoutId);
 
-          if (data.success) {
-            formStatus.textContent = 'Message sent successfully, Sir! I will respond shortly.';
+          let data;
+          try {
+            data = await response.json();
+          } catch (parseErr) {
+            data = { success: false };
+          }
+
+          if (response.ok && data.success) {
+            formStatus.textContent = 'Message sent successfully! I will respond shortly.';
             formStatus.className = 'success';
             contactForm.reset();
           } else {
-            formStatus.textContent = data.message || 'Transmission failed. Please try again.';
+            formStatus.innerHTML = (data.message || 'Transmission failed. Please try again') +
+              ' — or email me directly at <a href="mailto:karuppiah.mg001@gmail.com">karuppiah.mg001@gmail.com</a>.';
             formStatus.className = 'error';
           }
         } catch (error) {
-          formStatus.textContent = 'Network error encountered during submission.';
+          clearTimeout(timeoutId);
+          const reason = error.name === 'AbortError'
+            ? 'The request timed out.'
+            : 'Network error encountered during submission.';
+          formStatus.innerHTML = `${reason} Please email me directly at <a href="mailto:karuppiah.mg001@gmail.com">karuppiah.mg001@gmail.com</a>.`;
           formStatus.className = 'error';
         } finally {
           submitBtn.disabled = false;
