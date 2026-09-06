@@ -27,6 +27,7 @@
       --card-inner-bg: #ffffff;
       --shadow-color: rgba(15, 23, 42, 0.08);
       --glass-border: rgba(230, 57, 70, 0.15);
+      --accent-glow: rgba(230, 57, 70, 0.18);
       --nav-bg: rgba(248, 250, 252, 0.85);
     }
 
@@ -44,6 +45,7 @@
       --card-inner-bg: #080808;
       --shadow-color: rgba(0, 0, 0, 0.9);
       --glass-border: rgba(255, 255, 255, 0.08);
+      --accent-glow: rgba(255, 59, 74, 0.25);
       --nav-bg: rgba(0, 0, 0, 0.85);
     }
 
@@ -440,12 +442,13 @@
       text-align: center;
       height: fit-content;
       box-shadow: 0 10px 30px var(--shadow-color);
-      transform-style: preserve-3d;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      transition: border-color 0.3s ease, box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .profile-card:hover {
       border-color: var(--accent);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 45px var(--shadow-color), 0 0 40px var(--accent-glow);
     }
 
     .profile-avatar {
@@ -1252,7 +1255,7 @@
         <nav class="nav-links" id="navLinks">
           <a href="#home" class="active">Home</a>
           <a href="#about">About</a>
-          <a href="#resume">Experience</a>
+          <a href="#resume">Career</a>
           <a href="#services">Capabilities</a>
           <a href="#portfolio">Projects</a>
           <a href="#contact">Contact</a>
@@ -1282,7 +1285,7 @@
         <div class="hero-socials">
           <a href="https://linkedin.com/in/karuppiah-mg" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
           <a href="mailto:karuppiah.mg001@gmail.com" class="social-btn" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
-          <a href="#contact" class="social-btn" aria-label="Contact"><i class="fa-solid fa-phone"></i></a>
+          <a href="tel:+919047007030" class="social-btn" aria-label="Call"><i class="fa-solid fa-phone"></i></a>
         </div>
       </div>
     </div>
@@ -1329,9 +1332,10 @@
 
         <div class="card-social-links">
           <a href="https://linkedin.com/in/karuppiah-mg" target="_blank" rel="noopener noreferrer" class="card-social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="card-social-btn" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="card-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="card-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://github.com/KARUPPIAHMG" target="_blank" rel="noopener noreferrer" class="card-social-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://x.com/Karuppiah_mg" target="_blank" rel="noopener noreferrer" class="card-social-btn" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://www.facebook.com/karuppiah.mg" target="_blank" rel="noopener noreferrer" class="card-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/karuppiah.mg/" target="_blank" rel="noopener noreferrer" class="card-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
         </div>
       </div>
 
@@ -1650,7 +1654,7 @@
           <i class="fa-solid fa-phone"></i>
           <div>
             <h5>Phone</h5>
-            <p>9047007030</p>
+            <p><a href="tel:+919047007030" style="color: inherit;">9047007030</a></p>
           </div>
         </div>
 
@@ -1701,9 +1705,10 @@
         
         <div class="footer-social-row">
           <a href="https://linkedin.com/in/karuppiah-mg" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://github.com/KARUPPIAHMG" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://x.com/Karuppiah_mg" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://www.facebook.com/karuppiah.mg" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/karuppiah.mg/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
         </div>
       </div>
 
@@ -1713,7 +1718,7 @@
           <li><a href="#home">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#services">Capabilities</a></li>
-          <li><a href="#resume">Experience</a></li>
+          <li><a href="#resume">Career</a></li>
         </ul>
       </div>
 
@@ -1873,20 +1878,8 @@
       });
     });
 
-    // 3D TILT EFFECT
-    const tiltCard = document.getElementById('tiltCard');
-    if (tiltCard && window.matchMedia('(pointer: fine)').matches) {
-      tiltCard.addEventListener('mousemove', (e) => {
-        const rect = tiltCard.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        tiltCard.style.transform = `perspective(1000px) rotateX(${-y / 15}deg) rotateY(${x / 15}deg) translateY(-5px)`;
-      });
-
-      tiltCard.addEventListener('mouseleave', () => {
-        tiltCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
-      });
-    }
+    // Note: the profile card's hover effect (lift + glow) is now pure CSS —
+    // see .profile-card:hover in the <style> block. No JS needed for it.
 
     // THEME SWITCHING
     const themeToggleBtn = document.getElementById('themeToggle');
