@@ -1319,7 +1319,11 @@
         </div>
 
         <div class="card-actions">
-          <a href="assets/resume.pdf" download="Karuppiah_Resume.pdf" class="btn-outline"><i class="fa-solid fa-download"></i> Download Resume</a>
+          <!-- href must exactly match the filename + case you upload to the GitHub repo
+               (e.g. Karuppiah_Resume.pdf sitting right next to index.html). The download=
+               attribute below forces the browser to save it under this exact name every
+               time, no matter what the source file is called or where it's hosted. -->
+          <a href="Karuppiah_Resume.pdf" download="Karuppiah_Resume.pdf" class="btn-outline"><i class="fa-solid fa-download"></i> Download Resume</a>
           <a href="#contact" class="btn-red" style="justify-content: center;"><i class="fa-regular fa-paper-plane"></i> Get In Touch</a>
         </div>
 
